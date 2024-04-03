@@ -1,8 +1,6 @@
-
 # Gestão de Escola
 
 Projeto desenvolvido para fazer gestão de professores e alunos em salas de aula.
-
 
 ## Funcionalidades
 
@@ -24,10 +22,14 @@ Projeto desenvolvido para fazer gestão de professores e alunos em salas de aula
 
 - Trocar professores de salas ❌
 
-
 ## Stack utilizada
 
 **Front-end:** Vue.js, Bootstrap
 
 **Back-end:** TypeScript
 
+## Iniciar Projeto
+
+- npm install
+
+- npm run serve
