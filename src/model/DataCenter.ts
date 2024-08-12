@@ -20,102 +20,111 @@ export class DataCenter implements IDataCenter{
     return DataCenter.instance;
   }
 
-  getAllStudents(): Student[] {
-    return this.students;
+  // Métodos genéricos
+  getAll<T>(items: T[]): T[] {
+    return items;
   }
 
-  getStudentById(id: number): Student | undefined {
-    return this.students.find((student) => student.id === id);
-  }
-  getStudentByName(name: string): Student | undefined {
-    return this.students.find((student) => student.name === name);
-  }
-  addStudent(student: Student): void {
-    this.students.push(student);
+  getById<T extends { id: number }>(items: T[], id: number): T | undefined {
+    return items.find((item) => item.id === id);
   }
 
-  updateStudent(id: number, newData: Partial<Student>): void {
-    const studentIndex = this.students.findIndex(
-      (student) => student.id === id
-    );
-    if (studentIndex !== -1) {
-      this.students[studentIndex] = {
-        ...this.students[studentIndex],
+  getByName<T extends { name: string }>(items: T[], name: string): T | undefined {
+    return items.find((item) => item.name === name);
+  }
+
+  add<T>(items: T[], item: T): void {
+    items.push(item);
+  }
+
+  update<T extends { id: number }>(items: T[], id: number, newData: Partial<T>): void {
+    const itemIndex = items.findIndex((item) => item.id === id);
+    if (itemIndex !== -1) {
+      items[itemIndex] = {
+        ...items[itemIndex],
         ...newData,
       };
     }
   }
 
+  delete<T extends { id: number }>(items: T[], id: number): void {
+    items.splice(items.findIndex(item => item.id === id), 1);
+  }
+
+  // aq tenho meus métodos específicos para cada entidade usando os tipos genérico
+  getAllStudents(): Student[] {
+    return this.getAll(this.students);
+  }
+
+  getStudentById(id: number): Student | undefined {
+    return this.getById(this.students, id);
+  }
+
+  getStudentByName(name: string): Student | undefined {
+    return this.getByName(this.students, name);
+  }
+
+  addStudent(student: Student): void {
+    this.add(this.students, student);
+  }
+
+  updateStudent(id: number, newData: Partial<Student>): void {
+    this.update(this.students, id, newData);
+  }
+
   deleteStudent(id: number): void {
-    this.students = this.students.filter((student) => student.id !== id);
+    this.delete(this.students, id);
   }
 
   getAllTeachers(): Teacher[] {
-    return this.teachers;
+    return this.getAll(this.teachers);
   }
 
   getTeacherById(id: number): Teacher | undefined {
-    return this.teachers.find((teacher) => teacher.id === id);
+    return this.getById(this.teachers, id);
   }
 
   addTeacher(teacher: Teacher): void | SwalError {
     try {
-        let sameTeacher = this.teachers.find((teacherArray) => teacher.name === teacherArray.name);
-        if(sameTeacher) {
-          return new SwalError('Esse professor já existe! Cadastre outro!');
-        }
+      let sameTeacher = this.getByName(this.teachers, teacher.name);
+      if(sameTeacher) {
+        return new SwalError('Esse professor já existe! Cadastre outro!');
+      }
     } catch (error) {
       return new SwalError('Não foi possível cadastrar o professor');
       console.error(error);
     }
-    this.teachers.push(teacher);
+    this.add(this.teachers, teacher);
   }
 
   updateTeacher(id: number, updatedTeacherData: Partial<Teacher>): void {
-    const teacherIndex = this.teachers.findIndex(
-      (teacher) => teacher.id === id
-    );
-    if (teacherIndex !== -1) {
-      this.teachers[teacherIndex] = {
-        ...this.teachers[teacherIndex],
-        ...updatedTeacherData,
-      };
-    }
+    this.update(this.teachers, id, updatedTeacherData);
   }
 
   deleteTeacher(id: number): void {
-    this.teachers = this.teachers.filter((teacher) => teacher.id !== id);
+    this.delete(this.teachers, id);
   }
 
   getAllClassrooms(): Classroom[] {
-    return this.classrooms;
+    return this.getAll(this.classrooms);
   }
 
   getClassroomById(id: number): Classroom | undefined {
-    return this.classrooms.find((classroom) => classroom.id === id);
+    return this.getById(this.classrooms, id);
   }
 
   addClassroom(classroom: Classroom): void {
-    this.classrooms.push(classroom);
+    this.add(this.classrooms, classroom);
   }
 
   updateClassroom(id: number, updatedClassroomData: Partial<Classroom>): void {
-    const classroomIndex = this.classrooms.findIndex(
-      (classroom) => classroom.id === id
-    );
-    if (classroomIndex !== -1) {
-      this.classrooms[classroomIndex] = {
-        ...this.classrooms[classroomIndex],
-        ...updatedClassroomData,
-      };
-    }
+    this.update(this.classrooms, id, updatedClassroomData);
   }
 
   deleteClassroom(id: number): void {
-    this.classrooms = this.classrooms.filter(
-      (classroom) => classroom.id !== id
-    );
+    this.delete(this.classrooms, id);
   }
+
   addStudentToClassroom(studentId: number, classroomId: number): void {
     const student = this.getStudentById(studentId);
     const classroom = this.getClassroomById(classroomId);
@@ -128,6 +137,4 @@ export class DataCenter implements IDataCenter{
       throw new Error('Estudante ou Sala não encontrada');
     }
   }
-
-
 }
