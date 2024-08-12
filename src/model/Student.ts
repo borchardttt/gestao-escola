@@ -1,5 +1,5 @@
 
-import { Person } from './Person';
+import Person  from './Person';
 
 export class Student extends Person {
   age: number;

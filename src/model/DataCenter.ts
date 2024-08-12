@@ -1,11 +1,24 @@
-import { Student } from "./Student";
-import { Teacher } from "./Teacher";
-import { Classroom } from "./Classroom";
+import {Student} from "./Student";
+import {Teacher} from "./Teacher";
+import {Classroom} from "./Classroom";
+import {IDataCenter} from "../types/IDataCenter";
+import SwalError from "../types/SwalError";
+import Swal from "sweetalert2";
 
-export class DataCenter {
+export class DataCenter implements IDataCenter{
+  private static instance: DataCenter;
   private students: Student[] = [];
   private teachers: Teacher[] = [];
   private classrooms: Classroom[] = [];
+
+  private constructor() {}
+
+  public static getInstance(): DataCenter {
+    if (!DataCenter.instance) {
+      DataCenter.instance = new DataCenter();
+    }
+    return DataCenter.instance;
+  }
 
   getAllStudents(): Student[] {
     return this.students;
@@ -14,7 +27,9 @@ export class DataCenter {
   getStudentById(id: number): Student | undefined {
     return this.students.find((student) => student.id === id);
   }
-
+  getStudentByName(name: string): Student | undefined {
+    return this.students.find((student) => student.name === name);
+  }
   addStudent(student: Student): void {
     this.students.push(student);
   }
@@ -43,7 +58,16 @@ export class DataCenter {
     return this.teachers.find((teacher) => teacher.id === id);
   }
 
-  addTeacher(teacher: Teacher): void {
+  addTeacher(teacher: Teacher): void | SwalError {
+    try {
+        let sameTeacher = this.teachers.find((teacherArray) => teacher.name === teacherArray.name);
+        if(sameTeacher) {
+          return new SwalError('Esse professor já existe! Cadastre outro!');
+        }
+    } catch (error) {
+      return new SwalError('Não foi possível cadastrar o professor');
+      console.error(error);
+    }
     this.teachers.push(teacher);
   }
 
@@ -92,4 +116,18 @@ export class DataCenter {
       (classroom) => classroom.id !== id
     );
   }
+  addStudentToClassroom(studentId: number, classroomId: number): void {
+    const student = this.getStudentById(studentId);
+    const classroom = this.getClassroomById(classroomId);
+
+    if (student && classroom) {
+      if (classroom.students && !classroom.students.find(s => s.id === studentId)) {
+        classroom.students.push(student);
+      }
+    } else {
+      throw new Error('Estudante ou Sala não encontrada');
+    }
+  }
+
+
 }

@@ -1,12 +1,11 @@
-import { createApp } from 'vue';
-import { createRouter, createWebHistory } from 'vue-router';
-import 'materialize-css/dist/css/materialize.min.css';
-
+import {createApp} from 'vue';
+import {createRouter, createWebHistory} from 'vue-router';
+import './assets/tailwind.css';
+import 'flowbite';
+import Swal from 'sweetalert2';
 import App from './views/App.vue';
 import Sidebar from './components/Sidebar.vue';
 import HelloWorld from './components/HelloWorld.vue';
-
-
 
 import NewClassroom from './views/NewClassroom.vue';
 import NewStudent from './views/NewStudent.vue';
@@ -27,4 +26,7 @@ createApp(App)
 	.use(router)
 	.component('Sidebar', Sidebar)
 	.component('HelloWorld', HelloWorld)
+	.component('NewClassroom', NewClassroom)
+	.component('NewStudent', NewStudent)
+	.component('NewTeacher', NewTeacher)
 	.mount('#app');

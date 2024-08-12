@@ -1,13 +1,16 @@
-import { DataCenter } from "../model/DataCenter";
-import { Teacher } from "../model/Teacher";
+import {Teacher} from "../model/Teacher";
+import {MainController} from "../controllers/MainController";
+import {StatusTeacher} from "../types/StatusTeacher";
 
-export class TeacherController {
-  private dc = new DataCenter();
+export class TeacherController extends MainController {
 
   getAllTeachers() {
     return this.dc.getAllTeachers();
   }
-
+  getNewTeacher(id: number, name: string, subject:string, status: StatusTeacher): void {
+    const teacher= new Teacher(id, name, subject, status);
+    this.addTeacher(teacher);
+  }
   getTeacherById(id: number) {
     return this.dc.getTeacherById(id);
   }

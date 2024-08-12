@@ -1,4 +1,4 @@
-export class Person {
+export default abstract class  Person {
   id: number;
   name: string;
 

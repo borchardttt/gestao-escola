@@ -1,6 +1,8 @@
 <template>
 	<div class="hello">
-		<h1>{{ msg }}</h1>
+    <img class="mx-auto mt-10" alt="Vue logo" src="../assets/escola.png">
+
+    <h1>{{ msg }}</h1>
 		<p>
 			Developed By
 			<a href="https://github.com/borchardttt" target="_blank" rel="noopener">Gabriel Borchardt</a>.
