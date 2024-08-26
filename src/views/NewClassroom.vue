@@ -99,7 +99,7 @@
 </template>
 
 <script>
-import {ClassroomController} from '/dist/controllers/ClassroomController.js';
+import {ClassroomController} from '/docs/controllers/ClassroomController.js';
 
 export default {
   name: 'NewClassroom',

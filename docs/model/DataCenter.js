@@ -11,7 +11,7 @@ export class DataCenter {
         }
         return DataCenter.instance;
     }
-    // Métodos genéricos
+    // aq alguns métodos genéricos para usar em vários tipos
     getAll(items) {
         return items;
     }

@@ -13,8 +13,8 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["jest"],
-    "outDir": "./dist"
+    "types": ["webpack-env"],//webpack-env
+    "outDir": "./docs"
   },
   "include": [
     "src/**/*.ts",

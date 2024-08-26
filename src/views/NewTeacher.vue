@@ -66,9 +66,9 @@
 </template>
 
 <script>
-import {TeacherController} from '/dist/controllers/TeacherController.js';
-import {StatusTeacher} from "/dist/types/StatusTeacher.js";
-import  SwalError  from "/dist/types/SwalError.js"
+import {TeacherController} from '/docs/controllers/TeacherController.js';
+import {StatusTeacher} from "/docs/types/StatusTeacher.js";
+import  SwalError  from "/docs/types/SwalError.js"
 export default {
   name: 'NewTeacher',
   data() {

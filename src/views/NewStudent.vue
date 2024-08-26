@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import {StudentsController} from '/dist/controllers/StudentsController.js';
+import {StudentsController} from '/docs/controllers/StudentsController.js';
 
 export default {
   name: 'NewStudent',
