@@ -1,0 +1,1 @@
+{"version":3,"file":"SwalError.js","sourceRoot":"","sources":["../../src/types/SwalError.ts"],"names":[],"mappings":"AAAA,OAAO,IAAI,MAAM,aAAa,CAAC;AAE/B,MAAM,CAAC,OAAO,OAAO,SAAS;IAC1B,YAAY,YAAoB;QAC5B,IAAI,CAAC,IAAI,CAAC;YACN,KAAK,EAAE,OAAO;YACd,IAAI,EAAE,YAAY;SACrB,CAAC,CAAC;IACP,CAAC;CACJ"}
