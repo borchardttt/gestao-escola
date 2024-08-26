@@ -13,7 +13,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["webpack-env"],
+    "types": ["jest"],
     "outDir": "./dist"
   },
   "include": [
@@ -23,6 +23,6 @@
   ],
   "exclude": [
     "node_modules",
-    "**/*.spec.ts" // Exclui arquivos de teste, se necessário
+    "**/*.spec.ts"
   ]
 }

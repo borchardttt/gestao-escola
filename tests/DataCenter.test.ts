@@ -1,9 +1,9 @@
-import { DataCenter } from "../model/DataCenter";
-import { Student } from '../model/Student';
-import { Teacher } from '../model/Teacher';
-import { Classroom } from '../model/Classroom';
-import {StatusTeacher} from "../types/StatusTeacher";
-import SwalError from "../types/SwalError";
+import { DataCenter } from "../src/model/DataCenter";
+import { Student } from '../src/model/Student';
+import { Teacher } from '../src/model/Teacher';
+import { Classroom } from '../src/model/Classroom';
+import {StatusTeacher} from "../src/types/StatusTeacher";
+import SwalError from "../src/types/SwalError";
 
 describe('DataCenter', () => {
   let dataCenter: DataCenter;

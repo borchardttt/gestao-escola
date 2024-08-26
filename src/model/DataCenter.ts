@@ -20,7 +20,7 @@ export class DataCenter implements IDataCenter{
     return DataCenter.instance;
   }
 
-  // Métodos genéricos
+  // aq alguns métodos genéricos para usar em vários tipos
   getAll<T>(items: T[]): T[] {
     return items;
   }
